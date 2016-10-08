@@ -8,15 +8,19 @@ class OpacityWord extends React.Component {
         }
     }
 
-    componentWillMount(){
-        let time  =  setInterval(function(){
+    componentDidMount(){
+        this.time = setInterval(()=>{
             let opacity = this.state.opacity;
             opacity -= 0.5;
             if (opacity<0.1) {
                 opacity=1.0;
             }
             this.setState({opacity:opacity});
-        }.bind(this),100);
+        },100);
+    }
+
+    componentWillMount(){
+        clearInterval(this.time)
     }
 
     render() {

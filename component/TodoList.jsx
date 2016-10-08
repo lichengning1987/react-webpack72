@@ -35,10 +35,12 @@ React提倡所有的数据都是由父组件来管理，通过props的形式传�
 
 // 该组件用于将『新增』和『列表』两个组件集成起来
 class TodoList  extends React.Component {
+
     constructor() {
         super();
         this.state = {
-            todoList:[]
+            todoList:[],
+            age:1
         }
     }
     // 接收一个传入的数据，并将它实时更新到组件的 state 中，以便组件根据数据重新render
@@ -48,20 +50,21 @@ class TodoList  extends React.Component {
             todoList:rows
         })
     }
+
+    componentDidMount(){
+        setInterval(() => {
+            this.setState({
+                age: this.state.age + 1,
+            })
+        }, 1000);
+    }
+    
     render() {
         return (
             <div>
-                /*
-                     集成 TypeNews 组件，传入两个属性 onAdd 和 todo
-                         todo - 将todolist的数据传入到组件，当新增时，更新todolist数据
-                        onAdd -  将 handleChange 函数传入到组件，新增时，用它来处理最新的todolist数据
-                   */
+                <div>name: {this.props.name}, age: {this.state.age}</div>
                 <TypeNew onAdd={this.handleChange.bind(this)} todo={this.state.todoList}  />
-                /*
-                        集成 ListTodo 组件，传入两个属性 onDel 和 todo
-                        todo - 将todolist的数据传入到组件，当删除时，更新todolist数据
-                        onDel - 将 handleChange 函数传入到组件，删除时，用它来处理最新的todolist数据
-                    */
+
                 <ListTodo onDel={this.handleChange.bind(this)} todo={this.state.todoList} />
             </div>
         )
@@ -116,19 +119,28 @@ class ListTodo  extends React.Component {
 
     }
     render() {
+        let propsObj = {
+            className: 'logo',
+            href: 'https://www.taobao1.com',
+        };
+        let a = <a {...propsObj} href="//www.baidu.com">淘宝网</a>;
+        let b = <a href="//www.baidu.com" {...propsObj} >淘宝网</a>;
         return (
-            <ul id="todo-list">
-                {
-                    this.props.todo.map(function(item,i){
-                        return(
-                            <li>
-                                <label>{item}</label>
-                                <button className="destroy" onClick={this.handleDel.bind(this)} data-key={i}>delete</button>
-                            </li>
-                        )
-                    }.bind(this))   // {/* 绑定函数的执行this - 以便 this.handleDel */}
-                }
-            </ul>
+            <div>
+                {a} || {b}
+                <ul id="todo-list">
+                    {
+                        this.props.todo.map(function(item,i){
+                            return(
+                                <li>
+                                    <label>{item}</label>
+                                    <button className="destroy" onClick={this.handleDel.bind(this)} data-key={i}>delete</button>
+                                </li>
+                            )
+                        }.bind(this))   // {/* 绑定函数的执行this - 以便 this.handleDel */}
+                    }
+                </ul>
+            </div>
         )
     }
 }

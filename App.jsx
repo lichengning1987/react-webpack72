@@ -35,8 +35,7 @@ class App extends React.Component {
                <AsyncText/>
                <OpacityWord  name="wblcn"/>
                <UserGist source="https://api.github.com/users/octocat/gists" />
-
-               <TodoList></TodoList>
+               <TodoList name="小红"></TodoList>
             </div>
         );
     }
