@@ -593,8 +593,28 @@ this.state应该只包含需要代表你的UI状态的最小数据量，不要�
 ### 什么时候使用props
 props是父组件传递到子组件上时使用
 
+### React v0.14 
+- React 「一分为二」
+原本的 react package 被拆分为 react 及 react-dom 两个 package。其中 react package 中包含 React.createElement、 .createClass、 .Component， .PropTypes， .Children 这些 API,
+而 react-dom package 中包含 ReactDOM.render、 ReactDOM.unmountComponentAtNode、 ReactDOM.findDOMNode。
+原本在服务端渲染用的两个 API .renderToString 和 .renderToStaticMarkup 被放在了 react-dom/server 中。
 ### react-dom
 - findDOMNode
 - render
 - unmountComponentAtNode
-
+在 v0.14 版中 refs 指向的就是 DOM 节点，同时也会保留 .getDOMNode() 方法（带 warning），最终在 v0.15 版中去除该方法。
+``` js
+var Zoo = React.createClass({  
+  render: function() {
+    return <div>Giraffe name: <input ref="giraffe" /></div>;
+  },
+  showName: function() {
+    // 之前：
+    // var input = this.refs.giraffe.getDOMNode();
+    //
+    // v0.14 版：
+    var input = this.refs.giraffe;
+    alert(input.value);
+  }
+});
+```
