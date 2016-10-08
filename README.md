@@ -601,7 +601,7 @@ props是父组件传递到子组件上时使用
 ### react-dom
 - findDOMNode
 - render
-- unmountComponentAtNode
+- unmountComponentAtNode 删除dom节点
 在 v0.14 版中 refs 指向的就是 DOM 节点，同时也会保留 .getDOMNode() 方法（带 warning），最终在 v0.15 版中去除该方法。
 ``` js
 var Zoo = React.createClass({  
