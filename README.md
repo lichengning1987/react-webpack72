@@ -1,4 +1,4 @@
-# react-webpack72
+# react-webpack
 react-webpack 学习笔记
 ## react入门
 ### 核心思想
@@ -592,4 +592,9 @@ this.state应该只包含需要代表你的UI状态的最小数据量，不要�
 - 组件内部改变值
 ### 什么时候使用props
 props是父组件传递到子组件上时使用
+
+### react-dom
+- findDOMNode
+- render
+- unmountComponentAtNode
 
