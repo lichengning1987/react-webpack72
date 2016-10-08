@@ -7,6 +7,7 @@ let StateUse = require('./component/StateUse.jsx');
 let AsyncText = require('./component/AsyncText.jsx');
 let OpacityWord = require('./component/OpacityWord.jsx');
 let UserGist = require('./component/UserGist.jsx');
+const LoadingShow = require('./component/loading.jsx');
 
 class HelloMessage extends React.Component{
     constructor(){
@@ -37,6 +38,7 @@ class App extends React.Component {
                <UserGist source="https://api.github.com/users/octocat/gists" />
 
                <TodoList></TodoList>
+               <LoadingShow />
             </div>
         );
     }

@@ -115,6 +115,10 @@ class ListTodo  extends React.Component {
         this.props.onDel(this.props.todo)
 
     }
+    componentWillUnmount(){
+        console.log(444444444);
+    }
+
     render() {
         return (
             <ul id="todo-list">
