@@ -1,13 +1,16 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import TodoList from './component/TodoList.jsx';
-let RepeatArr = require('./component/repeatArr.jsx');
+import RepeatArr from './component/repeatArr.jsx';
 let RepeatLi = require('./component/repeatLi.jsx');
 let FocusText = require('./component/FocusText.jsx');
 let StateUse = require('./component/StateUse.jsx');
 let AsyncText = require('./component/AsyncText.jsx');
 let OpacityWord = require('./component/OpacityWord.jsx');
 let UserGist = require('./component/UserGist.jsx');
-const LoadingShow = require('./component/loading.jsx');
+import LoadingShows from './component/loading.jsx';
+import Domremove from './component/reactDOMremoveNode.jsx';
+import Tabcore from './component/tab.jsx';
 
 class HelloMessage extends React.Component{
     constructor(){
@@ -23,6 +26,9 @@ class App extends React.Component {
         super();
     }
     render() {
+        var props = {
+            name:"xiaohong"
+        }
         return (
            <div>
                <RepeatArr/>
@@ -36,11 +42,15 @@ class App extends React.Component {
                <AsyncText/>
                <OpacityWord  name="wblcn"/>
                <UserGist source="https://api.github.com/users/octocat/gists" />
-               <TodoList name="小红"></TodoList>
-               <LoadingShow />
+               <TodoList  {...props} name="小红"></TodoList>
+               <LoadingShows />
+               <Tabcore />
             </div>
         );
     }
 }
+
+ReactDOM.render( <Domremove /> , document.getElementById('loadWrap'))
+
 export default App;
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom'
 
 class LoadingShow  extends React.Component {
     constructor() {
@@ -6,17 +7,18 @@ class LoadingShow  extends React.Component {
         this.state ={
             Loading:false
         }
+        this.handle = this.handle.bind(this);
     }
+
     handle(e){
         this.setState({Loading:true});
-        let time  =  setTimeout(function(){
+        let time  =  setTimeout(()=>{
                        console.log(11222333444);
                        this.setState({Loading:false});
-                     }.bind(this),3000);
+                     },3000);
     }
 
     loading(){
-        console.log(this.state.Loading);
         if (this.state.Loading) {
               return <Loading />
         }
@@ -27,8 +29,8 @@ class LoadingShow  extends React.Component {
         var text = this.state.value;
         return (
             <div>
-               <button onClick={this.handle.bind(this)}>弹出loading</button>
-               {this.loading()}
+                    <button onClick={this.handle} style={{color:'red',background:'blue'}}>弹出loading</button>
+                    {this.loading()}
             </div>
         )
     }
@@ -38,7 +40,7 @@ class Loading  extends React.Component {
     constructor() {
         super();
         this.state ={
-            value:'Hello'
+            value:'正在加载中......'
         }
     }
     handleChange(e){
@@ -49,7 +51,7 @@ class Loading  extends React.Component {
         var text = this.state.value;
         return (
             <div>
-                正在加载中。。。。
+                {text}
             </div>
         )
     }

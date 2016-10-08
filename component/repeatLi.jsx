@@ -9,7 +9,7 @@ class RepeatLi extends React.Component {
         return (
             <ol>
                 {
-                    this.props.children.map((child)=>{return <li>{child}</li>})
+                    this.props.children.map((child,index)=>{return <li key={index}>{child}</li>})
                 }
             </ol>
         )
