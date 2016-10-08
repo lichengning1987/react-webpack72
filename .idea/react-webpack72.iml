@@ -4,6 +4,12 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+<<<<<<< HEAD
     <orderEntry type="library" name="react-webpack72 node_modules" level="project" />
   </component>
 </module>
+=======
+  </component>
+</module>
+
+>>>>>>> a45f68e91835b71cdbb4a173c64cf8e42d25150f

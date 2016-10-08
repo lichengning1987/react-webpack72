@@ -118,6 +118,10 @@ class ListTodo  extends React.Component {
         this.props.onDel(this.props.todo)
 
     }
+    componentWillUnmount(){
+        console.log(444444444);
+    }
+
     render() {
         let propsObj = {
             className: 'logo',
