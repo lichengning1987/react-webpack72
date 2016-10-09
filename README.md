@@ -647,7 +647,7 @@ handleChange(rows){
 ``` 
 TypeNew子组件添加数据，先使用todo获取todoList数据，然后使用onAdd方法通过修改todoList来添加todoList数据
 ListTodo子组件添加数据，先使用todo获取todoList数据，然后使用onDel方法通过修改todoList来删除todoList数据
-### TypeNew
+#### TypeNew子组件
 ``` js
 handleAdd(e){
     e.preventDefault();
@@ -675,7 +675,7 @@ render() {
 ```
 handleAdd方法主要处理提交表单时的验证处理，先获取传入的todolist数据，然后通过onAdd方法修改todolist数据来添加数据。
 
-### ListTodo
+#### ListTodo子组件
 ``` js
 handleDel(e){
      var delIndex = e.target.getAttribute('data-key');
