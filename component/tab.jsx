@@ -1,52 +1,49 @@
 import React from 'react';
+require("./style.css");
 
-class TabheadLi extends React.Component {
-    constructor() {
+/*this.props.children.map((child,index)=>{return <li key={index}>{child}</li>})*/
+
+class TabsControl extends React.Component{
+
+    constructor(){
         super();
+        this.state={
+            currentIndex : 0
+        };
     }
+
+    check_tittle_index(index){
+        return index===this.state.currentIndex ? "Tab_tittle active" : "Tab_tittle";
+    }
+
+    check_item_index(index){
+        return index===this.state.currentIndex ? "Tab_item show" : "Tab_item";
+    }
+
     render(){
-
-        return (
+        let _this=this;
+        return(
             <div>
-                <ol>
-                    {
-                        this.props.children.map((child,index)=>{return <li key={index}>{child}</li>})
-                    }
-                </ol>
+                {/*动态生成Tab导航*/}
+                <div className="Tab_tittle_wrap">
+                    { React.Children.map( this.props.children , (element,index) => {
+                        return(
+                            /*箭头函数没有自己的this，这里的this继承自外围作用域，即组件本身*/
+                            <div onClick={ () => { this.setState({currentIndex : index}) } } className={ this.check_tittle_index(index) }>{ element.props.name }</div>
+                        );
+                    }) }
+                </div>
+                {/*Tab内容区域*/}
+                <div className="Tab_item_wrap">
+                    {React.Children.map(this.props.children,(element,index)=>{
+                        return(
+                            <div className={ this.check_item_index(index) }>{ element }</div>
+                        );
+                    })}
+                </div>
             </div>
-        )
-
+        );
     }
 }
 
-class Tabs  extends React.Component {
-    constructor() {
-        super();
-        this.state ={
-            value:'Hello'
-        }
-        //this.hancleChange = this.hancleChange.bind(this);
-    }
-    handleChange(index,e){
-        //this.setState({value:e.target.value});
-        console.log(index,e.target);
-    }
-
-    render() {
-        var arrs = ["li1","li2","li3"];
-        var that = this;
-        return (
-            <div>
-                <h1><strong>Tab组件</strong></h1>
-                <TabheadLi>
-                    {
-                        arrs.map((child,index)=>{return <span key={index} onClick={(e)=>{this.handleChange(index,e)}}>{child}</span>})
-                    }
-                </TabheadLi>
-            </div>
-        )
-    }
-}
-
-
-export default Tabs;
+export default TabsControl;

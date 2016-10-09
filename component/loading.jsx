@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
+require("./styles.css")
 
 class LoadingShow  extends React.Component {
     constructor() {
@@ -50,8 +51,8 @@ class Loading  extends React.Component {
     render() {
         var text = this.state.value;
         return (
-            <div>
-                {text}
+            <div className="LoadBox">
+                    {text}
             </div>
         )
     }

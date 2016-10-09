@@ -10,7 +10,7 @@ let OpacityWord = require('./component/OpacityWord.jsx');
 let UserGist = require('./component/UserGist.jsx');
 import LoadingShows from './component/loading.jsx';
 import Domremove from './component/reactDOMremoveNode.jsx';
-import Tabcore from './component/tab.jsx';
+import Tabs from './component/tab.jsx';
 
 class HelloMessage extends React.Component{
     constructor(){
@@ -34,8 +34,8 @@ class App extends React.Component {
                <RepeatArr/>
                <HelloMessage name="Jonh" />
                <RepeatLi>
-                   <span>li1</span>
-                   <span>li2</span>
+                   <span name="first">repeatli1</span>
+                   <span name="second">repeatli2</span>
                </RepeatLi>
                <FocusText/>
                <StateUse/>
@@ -44,13 +44,23 @@ class App extends React.Component {
                <UserGist source="https://api.github.com/users/octocat/gists" />
                <TodoList  {...props} name="小红"></TodoList>
                <LoadingShows />
-               <Tabcore />
+               <Tabs>
+                   <div name="first">
+                       我是第一帧
+                   </div>
+                   <div name="second">
+                       我是第二帧
+                   </div>
+                   <div name="third">
+                       我是第三帧
+                   </div>
+               </Tabs>
             </div>
         );
     }
 }
 
-ReactDOM.render( <Domremove /> , document.getElementById('loadWrap'))
+//ReactDOM.render( <Domremove /> , document.getElementById('loadWrap'))
 
 export default App;
 

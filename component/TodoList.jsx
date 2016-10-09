@@ -1,7 +1,5 @@
 import React from 'react';
 
-
-
 /*
 React提倡所有的数据都是由父组件来管理，通过props的形式传递给子组件来处理——先记住，接下来再解释这句话。
 
@@ -28,11 +26,6 @@ React提倡所有的数据都是由父组件来管理，通过props的形式传�
 */
 
 
-
-
-
-
-
 // 该组件用于将『新增』和『列表』两个组件集成起来
 class TodoList  extends React.Component {
 
@@ -42,6 +35,7 @@ class TodoList  extends React.Component {
             todoList:[],
             age:1
         }
+        this.handleChange = this.handleChange.bind(this);
     }
     // 接收一个传入的数据，并将它实时更新到组件的 state 中，以便组件根据数据重新render
     // 只要改变了 state ，react自动执行 reader 计算
@@ -63,9 +57,8 @@ class TodoList  extends React.Component {
         return (
             <div>
                 <div>name: {this.props.name}, age: {this.state.age}</div>
-                <TypeNew onAdd={this.handleChange.bind(this)} todo={this.state.todoList}  />
-
-                <ListTodo onDel={this.handleChange.bind(this)} todo={this.state.todoList} />
+                <TypeNew onAdd={this.handleChange} todo={this.state.todoList}  />
+                <ListTodo onDel={this.handleChange} todo={this.state.todoList} />
             </div>
         )
     }
@@ -78,6 +71,7 @@ class TodoList  extends React.Component {
 class TypeNew   extends React.Component {
     constructor() {
         super();
+        this.handleAdd = this.handleAdd.bind(this);
     }
     handleAdd(e){
         e.preventDefault();
@@ -96,7 +90,7 @@ class TypeNew   extends React.Component {
     render() {
         return (
             // form submit 时，触发 handleAdd 事件
-            <form onSubmit={this.handleAdd.bind(this)}>
+            <form onSubmit={this.handleAdd}>
                 <input type="text" ref="inputnew" id="toto-new" placeholder="typing a newthing todo" autoComplete="off" />
                 <button>提交</button>
             </form>
@@ -110,6 +104,7 @@ class TypeNew   extends React.Component {
 class ListTodo  extends React.Component {
     constructor() {
         super();
+        this.handleDel = this.handleDel.bind(this);
     }
     handleDel(e){
        var delIndex = e.target.getAttribute('data-key');
@@ -117,9 +112,6 @@ class ListTodo  extends React.Component {
         this.props.todo.splice(delIndex,1);
         this.props.onDel(this.props.todo)
 
-    }
-    componentWillUnmount(){
-        console.log(444444444);
     }
 
     render() {
@@ -134,14 +126,14 @@ class ListTodo  extends React.Component {
                 {a} || {b}
                 <ul id="todo-list">
                     {
-                        this.props.todo.map(function(item,i){
+                        this.props.todo.map((item,i)=>{
                             return(
-                                <li>
+                                <li key={i}>
                                     <label>{item}</label>
-                                    <button className="destroy" onClick={this.handleDel.bind(this)} data-key={i}>delete</button>
+                                    <button className="destroy" onClick={this.handleDel} data-key={i}>delete</button>
                                 </li>
                             )
-                        }.bind(this))   // {/* 绑定函数的执行this - 以便 this.handleDel */}
+                        })   // {/* 绑定函数的执行this - 以便 this.handleDel */}
                     }
                 </ul>
             </div>

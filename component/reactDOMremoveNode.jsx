@@ -9,7 +9,7 @@ class removeReactDom  extends React.Component {
     componentDidMount() {
         this.interval = setInterval(()=> {
             console.log('running');
-        }, 100);
+        }, 1000);
     }
     handle(e){
         ReactDOM.unmountComponentAtNode(document.getElementById('loadWrap'));
