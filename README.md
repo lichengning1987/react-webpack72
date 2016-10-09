@@ -704,6 +704,68 @@ render() {
 ```
 handleDel方法根据e.target.getAttribute('data-key')和数组的splice()方法，来删除todo数组数据，最后通过onDel方法修改todo状态数据。
 
+### Loading组件
+``` js
+constructor() {
+        super();
+        this.state ={
+            Loading:false
+        }
+        this.handle = this.handle.bind(this);
+    }
+
+    handle(e){
+        this.setState({Loading:true});
+        let time  =  setTimeout(()=>{
+                       console.log(11222333444);
+                       this.setState({Loading:false});
+                     },3000);
+    }
+
+    loading(){
+        if (this.state.Loading) {
+              return <Loading />
+        }
+        return null;
+    }
+
+    render() {
+        var text = this.state.value;
+        return (
+            <div>
+                    <button onClick={this.handle} style={{color:'red',background:'blue'}}>弹出loading</button>
+                    {this.loading()}
+            </div>
+        )
+    }
+```    
+初始一个state：Loading,设置state{Loading:false},设置loading方法通过改变state：loading来判断返回<loading>子组件还是返回null，
+通过button，this.handle方法，来改变state值来显示<loading>子组件。
+
+#### Loading子组件
+``` js
+class Loading  extends React.Component {
+    constructor() {
+        super();
+        this.state ={
+            value:'正在加载中......'
+        }
+    }
+    handleChange(e){
+        this.setState({value:e.target.value});
+    }
+
+    render() {
+        var text = this.state.value;
+        return (
+            <div className="LoadBox">
+                    {text}
+            </div>
+        )
+    }
+}
+```    
+
 
 
 
