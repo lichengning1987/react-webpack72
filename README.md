@@ -740,7 +740,7 @@ constructor() {
     }
 ```    
 初始一个state：Loading,设置state{Loading:false},设置loading方法通过改变state：loading来判断返回<loading>子组件还是返回null，
-通过button，this.handle方法，来改变state值来显示<loading>子组件。
+通过button，this.handle方法，来改变state值来判断是否显示<loading>子组件。
 
 #### Loading子组件
 ``` js
@@ -765,7 +765,68 @@ class Loading  extends React.Component {
     }
 }
 ```    
+### Tab组件
+``` js
+<Tabs>
+     <div name="first">
+         我是第一帧
+     </div>
+     <div name="second">
+         我是第二帧
+     </div>
+     <div name="third">
+         我是第三帧
+     </div>
+ </Tabs>
+```
+tab组件里面使用嵌套方式来使用，div中name为导航内容，里面的内容为对应显示内容。
+``` js
+class Tabs extends React.Component{
 
+    constructor(){
+        super();
+        this.state={
+            currentIndex : 0
+        };
+    }
+
+    check_tittle_index(index){
+        return index===this.state.currentIndex ? "Tab_tittle active" : "Tab_tittle";
+    }
+
+    check_item_index(index){
+        return index===this.state.currentIndex ? "Tab_item show" : "Tab_item";
+    }
+
+    render(){
+        let _this=this;
+        return(
+            <div>
+                {/*动态生成Tab导航*/}
+                <div className="Tab_tittle_wrap">
+                    { React.Children.map( this.props.children , (element,index) => {
+                        return(
+                            /*箭头函数没有自己的this，这里的this继承自外围作用域，即组件本身*/
+                            <div onClick={ () => { this.setState({currentIndex : index}) } } className={ this.check_tittle_index(index) }>{ element.props.name }</div>
+                        );
+                    }) }
+                </div>
+                {/*Tab内容区域*/}
+                <div className="Tab_item_wrap">
+                    {React.Children.map(this.props.children,(element,index)=>{
+                        return(
+                            <div className={ this.check_item_index(index) }>{ element }</div>
+                        );
+                    })}
+                </div>
+            </div>
+        );
+    }
+}
+```
+React.Children.map来获取Tabs组件中的children:div,通过 element.props.name 来获取导航内容，通过element来获取内容区域显示。
+this.state={ currentIndex : 0 }来判断tab切换时显示的索引值，当点击导航区是改变currentIndex状态值。
+设置一个方法来判断当前点击时显示的className名称为current,通过判断当前点击的索引值index等于currentIndex时，切换className
 
 
 
