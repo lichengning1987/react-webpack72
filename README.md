@@ -618,3 +618,105 @@ var Zoo = React.createClass({
   }
 });
 ```
+
+### todolist组件
+一个todolist页面需要一个父组件，两个子组件。父组件当然就是todolist的『总指挥』，两个子组件分别用来add和show、delete。
+用通俗的方式讲来，父组件就是领导，两个子组件就是协助领导开展工作的，一切的资源和调动资源的权利，都在领导层级，子组件配合领导工作，
+需要资源或者调动资源，只能申请领导的批准。
+
+数据完全由父组件来管理和控制，子组件用来显示、操作数据，得经过父组件的批准，即——父组件通过props的形式将数据传递给子组件，
+子组件拿到父组件传递过来的数据，再进行展示。
+
+组件内部的数据由state控制，外部对内部传递数据时使用 props.
+针对父组件来说，要存储todolist的数据，那就是内部信息（本身就是自己可控的资源，而不是『领导』控制的资源），用state来存储即可。
+而父组件要将todolist数据传递给子组件，对子组件来说，那就是传递进来的外部信息（是『领导』的资源，交付给你来处理），需要使用props。
+
+父组件：有 state = {todoList:[]} 存储数据，还有一个handleChange方法
+``` js
+handleChange(rows){
+    this.setState({
+        todoList:rows
+    })
+}
+``` 
+接收一个传入的数据，并将它实时更新到组件的 state 中，以便组件根据数据重新render
+只要改变了 state ，react自动执行 reader 计算
+``` js
+<TypeNew onAdd={this.handleChange} todo={this.state.todoList}  />
+<ListTodo onDel={this.handleChange} todo={this.state.todoList} />
+``` 
+TypeNew子组件添加数据，先使用todo获取todoList数据，然后使用onAdd方法通过修改todoList来添加todoList数据
+ListTodo子组件添加数据，先使用todo获取todoList数据，然后使用onDel方法通过修改todoList来删除todoList数据
+### TypeNew
+``` js
+handleAdd(e){
+    e.preventDefault();
+    // 通过 refs 获取dom元素，然后获取输入的内容
+    var inputDOM = this.refs.inputnew;
+    var newthing = inputDOM.value.trim();
+    // 获取传入的todolist数据
+    var rows = this.props.todo;
+    if(newthing !== ""){
+        // 更新数据，并使用 onAdd 更新到 TodoList 组件的 state 中
+        rows.push(newthing);
+        this.props.onAdd(rows);
+    }
+    inputDOM.value = '';
+}
+render() {
+    return (
+        // form submit 时，触发 handleAdd 事件
+        <form onSubmit={this.handleAdd}>
+            <input type="text" ref="inputnew" id="toto-new" placeholder="typing a newthing todo" autoComplete="off" />
+            <button>提交</button>
+        </form>
+    )
+}
+```
+handleAdd方法主要处理提交表单时的验证处理，先获取传入的todolist数据，然后通过onAdd方法修改todolist数据来添加数据。
+
+### ListTodo
+``` js
+handleDel(e){
+     var delIndex = e.target.getAttribute('data-key');
+      // 更新数据，并使用 onDel 更新到 TodoList 的 state 中，以便 React自动render
+      this.props.todo.splice(delIndex,1);
+      this.props.onDel(this.props.todo)
+  }
+render() {  
+ return (
+            <div>
+                <ul id="todo-list">
+                    {
+                        this.props.todo.map((item,i)=>{
+                            return(
+                                <li key={i}>
+                                    <label>{item}</label>
+                                    <button className="destroy" onClick={this.handleDel} data-key={i}>delete</button>
+                                </li>
+                            )
+                        })   // {/* 绑定函数的执行this - 以便 this.handleDel */}
+                    }
+                </ul>
+            </div>
+        )
+    } 
+```
+handleDel方法根据e.target.getAttribute('data-key')和数组的splice()方法，来删除todo数组数据，最后通过onDel方法修改todo状态数据。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
