@@ -26,7 +26,7 @@ class App extends React.Component {
     constructor(){
         super();
         this.state = {
-            Loading:true,
+            loading:true,
         }
     }
 
@@ -34,7 +34,7 @@ class App extends React.Component {
 
         setTimeout(()=>{
             this.setState({
-                Loading:false
+                loading:false
             })
         },3000)
     }
@@ -45,7 +45,7 @@ class App extends React.Component {
         }
         return (
            <div>
-               <Loading Loading={this.state.Loading} />
+               <Loading loading={this.state.loading} />
                <RepeatArr/>
                <HelloMessage name="Jonh" />
                <RepeatLi>

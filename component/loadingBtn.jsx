@@ -6,16 +6,16 @@ class LoadingShow  extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
-            Loading:false,
+            loading:false,
         }
         this.handle = this.handle.bind(this);
     }
 
     handle(e){
-        this.setState({Loading:true});
+        this.setState({loading:true});
         let time  =  setTimeout(()=>{
                        console.log(11222333444);
-                       this.setState({Loading:false});
+                       this.setState({loading:false});
                      },3000);
     }
 
@@ -23,7 +23,7 @@ class LoadingShow  extends React.Component {
         return (
             <div>
                 <button onClick={this.handle} style={{color:'red',background:'blue'}}>弹出loading</button>
-                <Loading Loading={this.state.Loading}/>
+                <Loading loading={this.state.loading}/>
             </div>
         )
     }

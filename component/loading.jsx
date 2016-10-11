@@ -9,7 +9,7 @@ class Loading  extends React.Component {
     }
     render() {
         var text = this.state.value;
-        if(this.props.Loading){
+        if(this.props.loading){
             return (
                 <div className="LoadBox">
                     {text}
