@@ -8,9 +8,10 @@ let StateUse = require('./component/StateUse.jsx');
 let AsyncText = require('./component/AsyncText.jsx');
 let OpacityWord = require('./component/OpacityWord.jsx');
 let UserGist = require('./component/UserGist.jsx');
-import LoadingShows from './component/loading.jsx';
+import LoadingShows from './component/loadingBtn.jsx';
 import Domremove from './component/reactDOMremoveNode.jsx';
 import Tabs from './component/tab.jsx';
+import Loading from './component/loading.jsx';
 
 class HelloMessage extends React.Component{
     constructor(){
@@ -24,13 +25,27 @@ class HelloMessage extends React.Component{
 class App extends React.Component {
     constructor(){
         super();
+        this.state = {
+            Loading:true,
+        }
     }
+
+    componentDidMount(){
+
+        setTimeout(()=>{
+            this.setState({
+                Loading:false
+            })
+        },3000)
+    }
+
     render() {
         var props = {
             name:"xiaohong"
         }
         return (
            <div>
+               <Loading Loading={this.state.Loading} />
                <RepeatArr/>
                <HelloMessage name="Jonh" />
                <RepeatLi>
@@ -43,7 +58,7 @@ class App extends React.Component {
                <OpacityWord  name="wblcn"/>
                <UserGist source="https://api.github.com/users/octocat/gists" />
                <TodoList  {...props} name="小红"></TodoList>
-               <LoadingShows />
+               <LoadingShows/>
                <Tabs>
                    <div name="first">
                        我是第一帧
