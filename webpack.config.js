@@ -9,7 +9,8 @@ var config = { entry: './main.js',
                 loader: 'babel',
                 query: { presets: ['es2015', 'react']}
              },
-            { test: /\.css$/, loader: 'style!css' }
+            { test: /\.css$/, loader: 'style!css' },
+            { test: /\.less$/, loader: 'style!css!less' }
         ]
     }
 }
