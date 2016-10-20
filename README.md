@@ -1,5 +1,5 @@
-# react-webpack
-react-webpack 学习笔记
+# react-webpack  
+react中文翻译文档 http://www.css88.com/react/docs/top-level-api.html 
 ## react入门
 ### 核心思想
 - 响应式UI
