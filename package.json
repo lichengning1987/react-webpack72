@@ -17,11 +17,15 @@
     "css-loader": "^0.25.0",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
+    "natty-db": "^1.0.2",
     "object-assign": "^4.1.0",
     "rc-tabs": "^7.0.10",
     "react": "^15.2.0",
     "react-dom": "^15.2.0",
+    "react-mixin": "^1.7.0",
+    "reflux": "^0.3.0",
     "style-loader": "^0.13.1",
+    "uxcore": "^0.4.1",
     "webpack": "^1.13.1"
   },
   "dependencies": {

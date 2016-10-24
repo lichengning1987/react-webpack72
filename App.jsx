@@ -84,6 +84,7 @@ class App extends React.Component {
                  <TabPane tab="tab 2" key="2">选项卡二</TabPane>
                  <TabPane tab="tab 3" key="3">选项卡三</TabPane>
                  </Tabs>
+               
             </div>
         );
     }
