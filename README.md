@@ -832,9 +832,19 @@ this.state={ currentIndex : 0 }来判断tab切换时显示的索引值，当点�
 
 
 
+H5调试常见方法
+主要分为以下几点:
+chrome developer tools
+android+chrome inspect
+iOS+safari
+GapDebug
+debuggap
+weinre
+weinre相关套件 spy-debugger
+代理 常用的代理工具主要有fiddle和charles
+模拟器
 
-
-
+目前常用的为genymotion，基于virtualbox内核，所以首先需要安装virtualbox。genymotion对virtualbox启动的模拟器作了一系列优化工作，比如ROM下载、移动设备模拟命令菜单（比如旋屏、开启摄像头）等。 另外还有Parallels可供选择，也能下载android ROM进行安装。
 
 
 
