@@ -1,0 +1,153 @@
+@import '../../app/common.styl'
+active-color = #e35255
+
+box-sizing()
+  -webkit-box-sizing content-box
+  -moz-box-sizing content-box
+  box-sizing content-box
+.player
+  position relative
+  overflow hidden
+  background-size 100%
+  height 5.625rem
+  .resource
+    width 100%
+    height 100%
+    z-index 9
+    background-color #000
+    .video-source
+      width 100%
+      height 5.625rem
+    .video-source-none
+      height 0
+  .vedio-absolute-container
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    @extend .flex
+    @extend .flex-center
+    @extend .tFBJC
+    .lazing-loading
+      width 24px
+      height 24px
+      background-image url('http://img.alicdn.com/tps/i1/TB1PqWJKVXXXXXNXFXXACaQZpXX-576-24.png')
+      background-position -20px 0
+      z-index 99
+    .play-icon
+      width 60px
+      height 60px
+      background-image url("https://img.alicdn.com/tps/TB15OfhLpXXXXXfaXXXXXXXXXXX-250-250.png")
+      background-size 100%
+      display inline-block
+      z-index 98
+    .slider_bar
+      border-top 1px solid #000
+      position absolute
+      left 0
+      width: 100%
+      bottom 0
+      height 0
+      background -webkit-gradient(linear, left top, left bottom, from(rgba(100, 100, 100, .8)), to(rgba(10, 10, 10, .8)))
+      background rgba(38, 39, 40, .8)
+      overflow hidden
+      .left_btn_play
+        position absolute
+        width 60px
+        height 100%
+        background rgba(0, 0, 0, .4)
+        .svp_ctrl
+          width 100%
+          height 100%
+          text-align center
+          padding-top 10px
+          .big-icon
+            width 24px
+            height 24px
+    .action_trackBar
+      height 100%
+      margin 0 40px 0 57px
+      .trackbar
+        position absolute
+        left 66px
+        right 55px
+        top 24px
+        height 1px
+        background #67686b
+        box-sizing()
+        .played
+          background active-color
+          height 1px
+          .handle
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .scrollerBar
+              fill white
+        .buffered
+          background rgba(255, 255, 255, .15)
+        b
+          position absolute
+          display block
+          top 0
+          left 0
+          bottom 0
+          width 0
+          max-width 100%
+        .time_points
+          height 1px
+          z-index 10
+          em
+            display inline-block
+            width 3px
+            height 1px
+            background-color #ECE8E8
+            position absolute
+            top 0
+        .handle
+          position absolute
+          width 40px
+          height 40px
+          top -20px
+          right -23px
+    .time
+      font-size 10px !important
+      line-height 13px
+      position absolute
+      right 56px
+      bottom 3px
+      color #5f6164
+      font-weight 700
+      b
+        color: #b0aeae
+    .controllers
+      width 50px
+      height 100%
+      position absolute
+      top 0
+      right 0
+      .fullscreen
+        z-index 10
+        position relative
+        float right
+        height 100%
+        width 50px
+        .expand-icon
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          top: 50%;
+          left: 50%;
+          margin: -10px 0 0 -10px;
+          fill: #fff;
+
+
+
+
+
+
+
+
+
+
